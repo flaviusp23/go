@@ -8,6 +8,8 @@ import (
 
 func (app *application) routes() http.Handler {
 	mux := chi.NewRouter()
+	mux.Use(SessionLoad)
+
 	mux.Get("/virtual-terminal", app.VirtualTerminal)
 	mux.Get("/", app.Home)
 	mux.Post("/payment-succeeded", app.PaymentSucceeded)
